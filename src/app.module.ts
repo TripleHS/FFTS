@@ -9,11 +9,11 @@ import { UsersModule } from './users/users.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'remotemysql.com',
-      port: 3306,
-      username: 'TtEhSSiGPc',
-      password: 'URLyXZVVER',
-      database: 'TtEhSSiGPc',
+      host: 'localhost',
+      port: 3307,
+      username: 'root',
+      password: 'password',
+      database: 'ffts',
       entities: [User],
       synchronize: true,
     }),
