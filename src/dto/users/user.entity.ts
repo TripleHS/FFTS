@@ -8,10 +8,10 @@ export class User {
   id: string;
 
   @Column({ name: 'first_name', length: 25 })
-  firstName: string;
+  firstName?: string;
 
   @Column({ name: 'last_name', length: 50 })
-  lastName: string;
+  lastName?: string;
 
   @Column({ nullable: false, unique: true })
   username: string;
@@ -27,5 +27,5 @@ export class User {
   userRole: UserRole;
 
   @Column({ length: 1000 })
-  description: string;
+  description?: string;
 }
