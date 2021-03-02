@@ -4,26 +4,26 @@ import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class User {
-  @PrimaryGeneratedColumn()
-  id: BigInt;
+  @PrimaryGeneratedColumn({ type: 'bigint' })
+  id: string;
 
-  @Column({ length: 25 })
+  @Column({ name: 'first_name', length: 25 })
   firstName: string;
 
-  @Column({ length: 50 })
+  @Column({ name: 'last_name', length: 50 })
   lastName: string;
 
   @Column({ nullable: false, unique: true })
   username: string;
 
-  @Column({ length: 255 })
+  @Column({ name: 'user_password', length: 255 })
   userPassword: string;
 
   @Column({ nullable: false, unique: true, length: 50 })
   @IsEmail()
   email: string;
 
-  @Column({ nullable: false, length: 15 })
+  @Column({ name: 'user_role', nullable: false, length: 15 })
   userRole: UserRole;
 
   @Column({ length: 1000 })
