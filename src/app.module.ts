@@ -4,7 +4,7 @@ import { Address } from './addresses/address.entity';
 import { AddressesModule } from './addresses/addresses.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { User } from './users/user.entity';
+import { User } from './dto/users/user.entity';
 import { UsersModule } from './users/users.module';
 
 @Module({
