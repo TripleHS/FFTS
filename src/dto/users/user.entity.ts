@@ -1,6 +1,7 @@
 import { IsEmail } from 'class-validator';
 import { UserRole } from 'src/enums';
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Organizer } from '../organizers/organizer.entity';
 
 @Entity()
 export class User {
@@ -28,4 +29,7 @@ export class User {
 
   @Column({ length: 1000 })
   description?: string;
+
+  @OneToMany(() => Organizer, (organizer) => organizer.user, { cascade: true })
+  organizers?: Organizer[];
 }
