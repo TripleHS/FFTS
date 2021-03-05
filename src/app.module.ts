@@ -4,6 +4,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { User } from './dto/users/user.entity';
 import { UsersModule } from './users/users.module';
+import { OrganizersModule } from './organizers/organizers.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { UsersModule } from './users/users.module';
       synchronize: true,
     }),
     UsersModule,
+    OrganizersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
