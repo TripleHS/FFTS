@@ -1,6 +1,6 @@
-import { CreateAddressDto } from "src/dto/addresses/create-address.dto";
-import { User } from "src/users/user.entity";
-import { Address } from "./address.entity";
+import { CreateAddressDto } from 'src/dto/addresses/create-address.dto';
+import { User } from 'src/dto/users/user.entity';
+import { Address } from '../dto/addresses/address.entity';
 
 export class AddressBuilder {
   private address: Address;

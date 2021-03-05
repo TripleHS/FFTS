@@ -9,6 +9,10 @@ import {
 } from '@nestjs/common';
 import { CreateAddressDto } from 'src/dto/addresses/create-address.dto';
 import { EditAddressDto } from 'src/dto/addresses/edit-address.dto';
+import {
+  AddressCreationValidation,
+  AddressEditionValidation,
+} from './address-validation';
 import { AddressesService } from './addresses.service';
 
 @Controller('addresses')
@@ -32,6 +36,10 @@ export class AddressesController {
 
   @Post()
   addAddress(@Body() addressDto: CreateAddressDto) {
+    const address = AddressCreationValidation.validate(addressDto);
+    if (address.error) {
+      return address.error;
+    }
     return this.addressesService.create(addressDto);
   }
 
@@ -42,6 +50,10 @@ export class AddressesController {
 
   @Patch(':id')
   editFields(@Param('id') id: string, @Body() addressDto: EditAddressDto) {
+    const address = AddressEditionValidation.validate(addressDto);
+    if (address.error) {
+      return address.error;
+    }
     return this.addressesService.edit(id, addressDto);
   }
 }

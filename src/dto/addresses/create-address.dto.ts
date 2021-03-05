@@ -1,32 +1,11 @@
-import { ApiProperty } from '@nestjs/swagger';
-import { IsNumber, IsString } from 'class-validator';
+import { OmitType } from '@nestjs/swagger';
+import { IsNumber } from 'class-validator';
+import { Address } from './address.entity';
 
-export class CreateAddressDto {
-  @ApiProperty()
+export class CreateAddressDto extends OmitType(Address, [
+  'id',
+  'user',
+] as const) {
   @IsNumber()
-  readonly userId: number;
-  @ApiProperty()
-  @IsString()
-  readonly street: string;
-  @ApiProperty()
-  @IsString()
-  readonly building: string;
-  @ApiProperty()
-  @IsString()
-  readonly apartment: string;
-  @ApiProperty()
-  @IsString()
-  readonly postalCode: string;
-  @ApiProperty()
-  @IsString()
-  readonly city: string;
-  @ApiProperty()
-  @IsString()
-  readonly state: string;
-  @ApiProperty()
-  @IsString()
-  readonly country: string;
-  @ApiProperty()
-  @IsString()
-  readonly additionalInfo: string;
+  userId: number;
 }

@@ -4,8 +4,8 @@ import { CreateAddressDto } from 'src/dto/addresses/create-address.dto';
 import { EditAddressDto } from 'src/dto/addresses/edit-address.dto';
 import { UsersService } from 'src/users/users.service';
 import { Repository } from 'typeorm';
-import { Address } from './address.entity';
-import { AddressBuilder } from './AddressBuilder';
+import { Address } from '../dto/addresses/address.entity';
+import { AddressBuilder } from './address-builder';
 
 @Injectable()
 export class AddressesService {
@@ -32,9 +32,13 @@ export class AddressesService {
   }
 
   async create(addressDto: CreateAddressDto): Promise<Address> {
+    const user = await this.usersService.findOne(`${addressDto.userId}`);
+    if (!user) {
+      throw new Error(`User with id '${addressDto.userId}' does not exist!`);
+    }
     const address = new AddressBuilder()
       .addressDto(addressDto)
-      .user(await this.usersService.findOne(`${addressDto.userId}`))
+      .user(user)
       .build();
     return this.addressesRepository.save(address);
   }
@@ -45,10 +49,11 @@ export class AddressesService {
 
   async edit(id: string, addressDto: EditAddressDto): Promise<void> {
     const address = await this.findOne(id);
-    Object.entries(addressDto).forEach(async ([key, value]) =>
-      key == 'userId'
-        ? (address.user = await this.usersService.findOne(key))
-        : (address[key] = value),
+    if (!address) {
+      return;
+    }
+    Object.entries(addressDto).forEach(
+      ([key, value]) => (address[key] = value),
     );
     await this.addressesRepository.save(address);
   }
