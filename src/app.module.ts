@@ -5,6 +5,7 @@ import { AppService } from './app.service';
 import { User } from './dto/users/user.entity';
 import { UsersModule } from './users/users.module';
 import { OrganizersModule } from './organizers/organizers.module';
+import { Organizer } from './dto/organizers/organizer.entity';
 
 @Module({
   imports: [
@@ -15,7 +16,7 @@ import { OrganizersModule } from './organizers/organizers.module';
       username: 'root',
       password: 'password',
       database: 'ffts',
-      entities: [User],
+      entities: [User, Organizer],
       synchronize: true,
     }),
     UsersModule,
