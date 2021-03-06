@@ -1,6 +1,7 @@
 import { IsEmail } from 'class-validator';
 import { UserRole } from 'src/enums';
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToMany } from 'typeorm';
+import { Visit } from '../visits/visit.entity';
 
 @Entity()
 export class User {
@@ -28,4 +29,7 @@ export class User {
 
   @Column({ length: 1000 })
   description?: string;
+
+  @ManyToMany(() => Visit, (visit) => visit.users)
+  visits?: Visit[];
 }
