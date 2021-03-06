@@ -22,8 +22,8 @@ export class VisitBuilder {
     }
   }
 
-  user(user: User): VisitBuilder {
-    this.visit.user = user;
+  users(users: User[]): VisitBuilder {
+    this.visit.user = users;
     return this;
   }
 

@@ -7,5 +7,5 @@ export class CreateVisitDto extends OmitType(Visit, [
   'users',
 ] as const) {
   organizerId: number;
-  usersId: number[];
+  userIds: number[];
 }
