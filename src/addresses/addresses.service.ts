@@ -5,7 +5,7 @@ import { EditAddressDto } from 'src/dto/addresses/edit-address.dto';
 import { UsersService } from 'src/users/users.service';
 import { Repository } from 'typeorm';
 import { Address } from '../dto/addresses/address.entity';
-import { AddressBuilder } from './address-builder';
+import { AddressBuilder } from '../dto/addresses/address-builder';
 
 @Injectable()
 export class AddressesService {
@@ -32,7 +32,7 @@ export class AddressesService {
   }
 
   async create(addressDto: CreateAddressDto): Promise<Address> {
-    const user = await this.usersService.findOne(`${addressDto.userId}`);
+    const user = await this.usersService.findOne(addressDto.userId);
     if (!user) {
       throw new Error(`User with id '${addressDto.userId}' does not exist!`);
     }

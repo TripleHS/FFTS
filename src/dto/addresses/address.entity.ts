@@ -4,7 +4,7 @@ import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 @Entity()
 export class Address {
   @PrimaryGeneratedColumn({ type: 'bigint' })
-  id: number;
+  id: string;
   @ManyToOne(() => User, (user) => user.addresses)
   user: User;
   @Column({ name: 'street', length: 50 })
