@@ -1,5 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { Address } from './dto/addresses/address.entity';
+import { AddressesModule } from './addresses/addresses.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { User } from './dto/users/user.entity';
@@ -16,10 +18,11 @@ import { VisitsModule } from './visits/visits.module';
       username: 'root',
       password: 'password',
       database: 'ffts',
-      entities: [User, Visit],
+      entities: [User, Address, Visit],
       synchronize: true,
     }),
     UsersModule,
+    AddressesModule,
     VisitsModule,
   ],
   controllers: [AppController],

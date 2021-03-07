@@ -1,6 +1,13 @@
 import { IsEmail } from 'class-validator';
+import { Address } from 'src/dto/addresses/address.entity';
 import { UserRole } from 'src/enums';
-import { Entity, Column, PrimaryGeneratedColumn, ManyToMany } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToMany,
+  OneToMany,
+} from 'typeorm';
 import { Visit } from '../visits/visit.entity';
 
 @Entity()
@@ -29,6 +36,9 @@ export class User {
 
   @Column({ length: 1000 })
   description?: string;
+
+  @OneToMany(() => Address, (address) => address.user, { cascade: true })
+  addresses?: Address[];
 
   @ManyToMany(() => Visit, (visit) => visit.users)
   visits?: Visit[];
