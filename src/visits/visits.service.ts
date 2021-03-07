@@ -71,7 +71,7 @@ export class VisitsService {
     await this.visitsRepository.save(visit);
   }
 
-  private async updateUsers(visit: Visit, userIds: number[]): Promise<void> {
+  private async updateUsers(visit: Visit, userIds: string[]): Promise<void> {
     const users = await this.usersService.findAllById(userIds);
     if (!users) {
       throw new Error(`Cannot edit visit, unknown users.`);
