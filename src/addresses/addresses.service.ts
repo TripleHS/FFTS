@@ -15,12 +15,12 @@ export class AddressesService {
     private usersService: UsersService,
   ) {}
 
-  findAll(): Promise<Address[]> {
-    return this.addressesRepository.find();
+  async findAll(): Promise<Address[]> {
+    return await this.addressesRepository.find({ relations: ['user'] });
   }
 
   findOne(id: string): Promise<Address> {
-    return this.addressesRepository.findOne(id);
+    return this.addressesRepository.findOne(id, { relations: ['user'] });
   }
 
   findByUserId(userId: string): Promise<Address[]> {

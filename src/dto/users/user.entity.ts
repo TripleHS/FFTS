@@ -32,7 +32,7 @@ export class User {
   description?: string;
 
   @OneToMany(() => Address, (address) => address.user, { cascade: true })
-  addresses: Address[];
+  addresses?: Address[];
 
   @OneToMany(() => Organizer, (organizer) => organizer.user, { cascade: true })
   organizers?: Organizer[];
