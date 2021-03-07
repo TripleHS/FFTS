@@ -15,7 +15,7 @@ export class UsersService {
     return this.usersRepository.find();
   }
 
-  findAllById(userIds: number[]): Promise<User[]> {
+  findAllById(userIds: string[]): Promise<User[]> {
     return this.usersRepository.find({
       where: {
         id: In(userIds),

@@ -27,7 +27,7 @@ export class VisitBuilder {
     return this;
   }
 
-  organizer(organizer: number): VisitBuilder {
+  organizer(organizer: string): VisitBuilder {
     this.visit.organizer = organizer;
     return this;
   }
