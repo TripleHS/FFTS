@@ -1,6 +1,6 @@
 import { OmitType } from '@nestjs/swagger';
-import { CreateOrganizer } from './create-organizer.dto';
+import { CreateOrganizerDto } from './create-organizer.dto';
 
-export class EditOrganizer extends OmitType(CreateOrganizer, [
+export class EditOrganizerDto extends OmitType(CreateOrganizerDto, [
   'userId',
 ] as const) {}

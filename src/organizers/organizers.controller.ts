@@ -7,8 +7,8 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
-import { CreateOrganizer } from 'src/dto/organizers/create-organizer.dto';
-import { EditOrganizer } from 'src/dto/organizers/edit-organizer.dto';
+import { CreateOrganizerDto } from 'src/dto/organizers/create-organizer.dto';
+import { EditOrganizerDto } from 'src/dto/organizers/edit-organizer.dto';
 import { OrganizersService } from './organizers.service';
 
 @Controller('organizers')
@@ -30,8 +30,13 @@ export class OrganizersController {
     return this.organizersService.getAllByUserId(userId);
   }
 
+  @Get('address/:id')
+  getAllOrganizersByAddressId(@Param('id') addressId: string) {
+    return this.organizersService.getAllByAddressId(addressId);
+  }
+
   @Post()
-  create(@Body() organizerDto: CreateOrganizer) {
+  create(@Body() organizerDto: CreateOrganizerDto) {
     return this.organizersService.create(organizerDto);
   }
 
@@ -41,7 +46,7 @@ export class OrganizersController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() organizerDto: EditOrganizer) {
+  update(@Param('id') id: string, @Body() organizerDto: EditOrganizerDto) {
     return this.organizersService.edit(id, organizerDto);
   }
 }

@@ -1,9 +1,11 @@
 import { OmitType } from '@nestjs/swagger';
 import { Organizer } from './organizer.entity';
 
-export class CreateOrganizer extends OmitType(Organizer, [
+export class CreateOrganizerDto extends OmitType(Organizer, [
   'id',
   'user',
+  'address',
 ] as const) {
-  userId: number;
+  userId: string;
+  addressId: string;
 }

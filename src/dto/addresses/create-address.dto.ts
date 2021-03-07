@@ -5,6 +5,7 @@ import { Address } from './address.entity';
 export class CreateAddressDto extends OmitType(Address, [
   'id',
   'user',
+  'organizers',
 ] as const) {
   @IsString()
   userId: string;

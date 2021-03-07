@@ -1,6 +1,7 @@
-import { CreateOrganizer } from './create-organizer.dto';
+import { CreateOrganizerDto } from './create-organizer.dto';
 import { Organizer } from './organizer.entity';
 import { User } from '../users/user.entity';
+import { Address } from '../addresses/address.entity';
 
 export class OrganizerBuilder {
   private organizer: Organizer;
@@ -9,14 +10,18 @@ export class OrganizerBuilder {
     this.organizer = new Organizer();
   }
 
-  organizerDto(organizerDto: CreateOrganizer): OrganizerBuilder {
-    this.organizer.address = organizerDto.address;
+  organizerDto(organizerDto: CreateOrganizerDto): OrganizerBuilder {
     this.organizer.title = organizerDto.title;
     return this;
   }
 
   user(user: User): OrganizerBuilder {
     this.organizer.user = user;
+    return this;
+  }
+
+  address(address: Address): OrganizerBuilder {
+    this.organizer.address = address;
     return this;
   }
 

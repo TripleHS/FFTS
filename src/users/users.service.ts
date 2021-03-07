@@ -12,11 +12,15 @@ export class UsersService {
   ) {}
 
   findAll(): Promise<User[]> {
-    return this.usersRepository.find({ relations: ['addresses'] });
+    return this.usersRepository.find({
+      relations: ['addresses', 'organizers'],
+    });
   }
 
   findOne(id: string): Promise<User> {
-    return this.usersRepository.findOne(id, { relations: ['addresses'] });
+    return this.usersRepository.findOne(id, {
+      relations: ['addresses', 'organizers'],
+    });
   }
 
   create(createUserDto: CreateUserDto): Promise<User> {

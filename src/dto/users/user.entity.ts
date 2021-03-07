@@ -31,9 +31,9 @@ export class User {
   @Column({ length: 1000 })
   description?: string;
 
-  @OneToMany(() => Address, (address) => address.user, { cascade: true })
+  @OneToMany(() => Address, (address) => address.user)
   addresses?: Address[];
 
-  @OneToMany(() => Organizer, (organizer) => organizer.user, { cascade: true })
+  @OneToMany(() => Organizer, (organizer) => organizer.user)
   organizers?: Organizer[];
 }

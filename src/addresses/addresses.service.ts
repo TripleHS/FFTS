@@ -15,8 +15,8 @@ export class AddressesService {
     private usersService: UsersService,
   ) {}
 
-  async findAll(): Promise<Address[]> {
-    return await this.addressesRepository.find({ relations: ['user'] });
+  findAll(): Promise<Address[]> {
+    return this.addressesRepository.find({ relations: ['user'] });
   }
 
   findOne(id: string): Promise<Address> {
