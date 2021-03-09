@@ -35,7 +35,7 @@ export class AddressCreationValidation {
       .trim()
       .max(1000)
       .pattern(/^[\w\s]*$/),
-    userId: Joi.string().pattern(/^\d+$/).required(),
+    userId: Joi.string().uuid().required(),
   });
 
   static validate(addressDto: CreateAddressDto) {
