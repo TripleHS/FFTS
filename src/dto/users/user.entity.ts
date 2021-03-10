@@ -2,6 +2,7 @@ import { IsEmail } from 'class-validator';
 import { Address } from 'src/dto/addresses/address.entity';
 import { UserRole } from 'src/enums';
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Organizer } from '../organizers/organizer.entity';
 
 @Entity()
 export class User {
@@ -30,6 +31,9 @@ export class User {
   @Column({ length: 1000 })
   description?: string;
 
-  @OneToMany(() => Address, (address) => address.user, { cascade: true })
-  addresses: Address[];
+  @OneToMany(() => Address, (address) => address.user)
+  addresses?: Address[];
+
+  @OneToMany(() => Organizer, (organizer) => organizer.user)
+  organizers?: Organizer[];
 }
