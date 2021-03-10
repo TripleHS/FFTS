@@ -6,6 +6,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { User } from './dto/users/user.entity';
 import { UsersModule } from './users/users.module';
+import { PhonesModule } from './phones/phones.module';
+import { Phone } from './dto/phones/phone.entity';
 
 @Module({
   imports: [
@@ -16,11 +18,12 @@ import { UsersModule } from './users/users.module';
       username: 'root',
       password: 'password',
       database: 'ffts',
-      entities: [User, Address],
+      entities: [User, Address, Phone],
       synchronize: true,
     }),
     UsersModule,
     AddressesModule,
+    PhonesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

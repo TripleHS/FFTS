@@ -10,6 +10,7 @@ import {
 import { Address } from 'src/dto/addresses/address.entity';
 import { UserRole } from 'src/enums';
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Phone } from '../phones/phone.entity';
 
 @Entity()
 export class User {
@@ -61,4 +62,7 @@ export class User {
 
   @OneToMany(() => Address, (address) => address.user, { cascade: true })
   addresses: Address[];
+
+  @OneToMany(() => Phone, (phone) => phone.user, { cascade: true })
+  phones: Phone[];
 }
