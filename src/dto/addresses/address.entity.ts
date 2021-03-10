@@ -1,12 +1,17 @@
 import { User } from 'src/dto/users/user.entity';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { Organizer } from '../organizers/organizer.entity';
 
 @Entity()
 export class Address {
-  @PrimaryGeneratedColumn({ type: 'bigint' })
+  @PrimaryGeneratedColumn('uuid')
   id: string;
-  @ManyToOne(() => User, (user) => user.addresses)
-  user: User;
   @Column({ name: 'street', length: 50 })
   street: string;
   @Column({ name: 'building', length: 15 })
@@ -23,4 +28,8 @@ export class Address {
   country: string;
   @Column({ name: 'additional_info', length: 1000, nullable: true })
   additionalInfo: string;
+  @ManyToOne(() => User, (user) => user.addresses, { cascade: true })
+  user: User;
+  @OneToMany(() => Organizer, (organizer) => organizer.address)
+  organizers?: Organizer[];
 }

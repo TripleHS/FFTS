@@ -8,6 +8,8 @@ import { User } from './dto/users/user.entity';
 import { UsersModule } from './users/users.module';
 import { PhonesModule } from './phones/phones.module';
 import { Phone } from './dto/phones/phone.entity';
+import { OrganizersModule } from './organizers/organizers.module';
+import { Organizer } from './dto/organizers/organizer.entity';
 
 @Module({
   imports: [
@@ -18,12 +20,13 @@ import { Phone } from './dto/phones/phone.entity';
       username: 'root',
       password: 'password',
       database: 'ffts',
-      entities: [User, Address, Phone],
+      entities: [User, Address, Phone, Organizer],
       synchronize: true,
     }),
     UsersModule,
     AddressesModule,
     PhonesModule,
+    OrganizersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
