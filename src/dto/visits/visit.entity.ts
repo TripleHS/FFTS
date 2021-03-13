@@ -1,5 +1,12 @@
 import { VisitType } from 'src/enums';
-import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  ManyToMany,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { Organizer } from '../organizers/organizer.entity';
 import { User } from '../users/user.entity';
 
 @Entity({ name: 'visits' })
@@ -14,6 +21,8 @@ export class Visit {
   visitType: VisitType;
   @ManyToMany(() => User, (user) => user.visits)
   users: User[];
-  @Column({ type: 'bigint' })
-  organizer: number;
+  @ManyToOne(() => Organizer, (organizer) => organizer.visits, {
+    cascade: true,
+  })
+  organizer: Organizer;
 }

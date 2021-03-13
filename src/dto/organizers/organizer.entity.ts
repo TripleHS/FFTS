@@ -1,6 +1,13 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { Address } from '../addresses/address.entity';
 import { User } from '../users/user.entity';
+import { Visit } from '../visits/visit.entity';
 
 @Entity({ name: 'organizers' })
 export class Organizer {
@@ -12,4 +19,6 @@ export class Organizer {
   user: User;
   @ManyToOne(() => Address, (address) => address.organizers, { cascade: true })
   address: Address;
+  @OneToMany(() => Visit, (visit) => visit.organizer)
+  visits: Visit[];
 }
