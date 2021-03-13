@@ -7,14 +7,9 @@ export class AddressBuilder {
 
   addressDto(addressDto: CreateAddressDto): AddressBuilder {
     this.address = new Address();
-    this.address.street = addressDto.street;
-    this.address.building = addressDto.building;
-    this.address.apartment = addressDto.apartment;
-    this.address.postalCode = addressDto.postalCode;
-    this.address.city = addressDto.city;
-    this.address.state = addressDto.state;
-    this.address.country = addressDto.country;
-    this.address.additionalInfo = addressDto.additionalInfo;
+    Object.entries(addressDto)
+      .filter(([key]) => key !== 'userId' && key !== 'addressId')
+      .forEach(([key, value]) => (this.address[key] = value.trim()));
     return this;
   }
 

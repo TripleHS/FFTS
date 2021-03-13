@@ -53,7 +53,7 @@ export class AddressesService {
       return;
     }
     Object.entries(addressDto).forEach(
-      ([key, value]) => (address[key] = value),
+      ([key, value]) => (address[key] = value.trim()),
     );
     await this.addressesRepository.save(address);
   }
