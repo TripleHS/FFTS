@@ -72,18 +72,8 @@ export class VisitsService {
     if (!visit) {
       throw new Error(`Visit with id '${id}' does not exist!`);
     }
-    Object.entries(visitDto).forEach(([key, value]) =>
-      key === 'userIds' ? this.updateUsers(visit, value) : (visit[key] = value),
-    );
+    Object.entries(visitDto).forEach(([key, value]) => (visit[key] = value));
     await this.visitsRepository.save(visit);
-  }
-
-  private async updateUsers(visit: Visit, userIds: string[]): Promise<void> {
-    const users = await this.usersService.findAllById(userIds);
-    if (!users) {
-      throw new Error(`Cannot edit visit, unknown users.`);
-    }
-    visit.users = users;
   }
 
   async addUser(visitId: string, userId: string): Promise<void> {
