@@ -5,6 +5,7 @@ export class CreateOrganizerDto extends OmitType(Organizer, [
   'id',
   'user',
   'address',
+  'visits',
 ] as const) {
   userId: string;
   addressId: string;
