@@ -9,6 +9,7 @@ import {
   OneToMany,
 } from 'typeorm';
 import { Visit } from '../visits/visit.entity';
+import { Organizer } from '../organizers/organizer.entity';
 
 @Entity()
 export class User {
@@ -39,6 +40,9 @@ export class User {
 
   @OneToMany(() => Address, (address) => address.user, { cascade: true })
   addresses?: Address[];
+
+  @OneToMany(() => Organizer, (organizer) => organizer.user)
+  organizers?: Organizer[];
 
   @ManyToMany(() => Visit, (visit) => visit.users)
   visits?: Visit[];

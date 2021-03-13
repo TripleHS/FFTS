@@ -5,8 +5,10 @@ import { AddressesModule } from './addresses/addresses.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { User } from './dto/users/user.entity';
-import { Visit } from './dto/visits/visit.entity';
 import { UsersModule } from './users/users.module';
+import { Organizer } from './dto/organizers/organizer.entity';
+import { OrganizersModule } from './organizers/organizers.module';
+import { Visit } from './dto/visits/visit.entity';
 import { VisitsModule } from './visits/visits.module';
 
 @Module({
@@ -18,11 +20,12 @@ import { VisitsModule } from './visits/visits.module';
       username: 'root',
       password: 'password',
       database: 'ffts',
-      entities: [User, Address, Visit],
+      entities: [User, Address, Organizer, Visit],
       synchronize: true,
     }),
     UsersModule,
     AddressesModule,
+    OrganizersModule,
     VisitsModule,
   ],
   controllers: [AppController],

@@ -16,11 +16,11 @@ export class AddressesService {
   ) {}
 
   findAll(): Promise<Address[]> {
-    return this.addressesRepository.find();
+    return this.addressesRepository.find({ relations: ['user'] });
   }
 
   findOne(id: string): Promise<Address> {
-    return this.addressesRepository.findOne(id);
+    return this.addressesRepository.findOne(id, { relations: ['user'] });
   }
 
   findByUserId(userId: string): Promise<Address[]> {
