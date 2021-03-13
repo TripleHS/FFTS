@@ -1,9 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { User } from 'src/dto/users/user.entity';
 import { CreateVisitDto } from 'src/dto/visits/create-visit.dto';
 import { EditVisitDto } from 'src/dto/visits/edit-visit.dto';
 import { VisitBuilder } from 'src/dto/visits/visit-builder';
 import { Visit } from 'src/dto/visits/visit.entity';
+import { OrganizersService } from 'src/organizers/organizers.service';
 import { UsersService } from 'src/users/users.service';
 import { Repository } from 'typeorm';
 
@@ -13,6 +15,7 @@ export class VisitsService {
     @InjectRepository(Visit)
     private visitsRepository: Repository<Visit>,
     private usersService: UsersService,
+    private organizersService: OrganizersService,
   ) {}
 
   getAll(): Promise<Visit[]> {
@@ -39,12 +42,16 @@ export class VisitsService {
     });
   }
 
+  async getAllParticipants(visitId: string): Promise<User[]> {
+    return (await this.getOne(visitId)).users;
+  }
+
   async create(visitDto: CreateVisitDto): Promise<Visit> {
     const users = await this.usersService.findAllById(visitDto.userIds);
     if (!users) {
       throw new Error('Cannot create visit, unknown users.');
     }
-    const organizer = visitDto.organizerId;
+    const organizer = await this.organizersService.getOne(visitDto.organizerId);
     if (!organizer) {
       throw new Error('Cannot create visit, unknown organizer.');
     }
@@ -77,5 +84,33 @@ export class VisitsService {
       throw new Error(`Cannot edit visit, unknown users.`);
     }
     visit.users = users;
+  }
+
+  async addUser(visitId: string, userId: string): Promise<void> {
+    const visit = await this.getOne(visitId);
+    if (!visit) {
+      throw new Error();
+    }
+    if (visit.users.filter(({ id }) => userId == id)) {
+      const user = await this.usersService.findOne(userId);
+      if (!user) {
+        throw new Error();
+      }
+      visit.users.push(user);
+      this.visitsRepository.save(visit);
+    }
+  }
+
+  async removeUser(visitId: string, userId: string): Promise<void> {
+    const visit = await this.getOne(visitId);
+    if (!visit) {
+      throw new Error();
+    }
+    const user = visit.users.filter(({ id }) => id == userId)[0];
+    const userIndex = visit.users.indexOf(user);
+    if (user) {
+      visit.users.splice(userIndex, 1);
+      this.visitsRepository.save(visit);
+    }
   }
 }
