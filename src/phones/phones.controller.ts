@@ -12,17 +12,17 @@ export class PhonesController {
   }
 
   @Get(':id')
-  getAddressById(@Param('id') id: string) {
+  getPhoneById(@Param('id') id: string) {
     return this.phonesService.findOne(id);
   }
 
   @Post()
-  addAddress(@Body() phonesDto: CreatePhoneDto) {
+  addPhone(@Body() phonesDto: CreatePhoneDto) {
     return this.phonesService.create(phonesDto);
   }
 
   @Delete(':id')
-  deleteAddress(@Param('id') id: string) {
+  deletePhone(@Param('id') id: string) {
     return this.phonesService.remove(id);
   }
 }
