@@ -1,3 +1,1 @@
-export class CreateWorkingHoursDto {
-
-}
+export class CreateWorkingHoursDto {}

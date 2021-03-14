@@ -4,6 +4,6 @@ import { WorkingHoursController } from './working-hours.controller';
 
 @Module({
   providers: [WorkingHoursService],
-  controllers: [WorkingHoursController]
+  controllers: [WorkingHoursController],
 })
 export class WorkingHoursModule {}

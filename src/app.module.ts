@@ -7,6 +7,8 @@ import { AppService } from './app.service';
 import { User } from './dto/users/user.entity';
 import { WorkingHours } from './dto/working-hours/working-hours.entity';
 import { UsersModule } from './users/users.module';
+import { PhonesModule } from './phones/phones.module';
+import { Phone } from './dto/phones/phone.entity';
 import { OrganizersModule } from './organizers/organizers.module';
 import { Organizer } from './dto/organizers/organizer.entity';
 import { WorkingHoursModule } from './working-hours/working-hours.module';
@@ -20,11 +22,12 @@ import { WorkingHoursModule } from './working-hours/working-hours.module';
       username: 'root',
       password: 'password',
       database: 'ffts',
-      entities: [User, Address, Organizer, WorkingHours],
+      entities: [User, Address, Phone, Organizer, WorkingHours],
       synchronize: true,
     }),
     UsersModule,
     AddressesModule,
+    PhonesModule,
     OrganizersModule,
     WorkingHoursModule,
   ],

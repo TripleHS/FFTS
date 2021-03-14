@@ -4,5 +4,6 @@ import { User } from './user.entity';
 export class CreateUserDto extends OmitType(User, [
   'id',
   'addresses',
+  'phones',
   'organizers',
 ] as const) {}
