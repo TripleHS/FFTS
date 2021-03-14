@@ -9,6 +9,10 @@ import {
 } from '@nestjs/common';
 import { CreateVisitDto } from 'src/dto/visits/create-visit.dto';
 import { EditVisitDto } from 'src/dto/visits/edit-visit.dto';
+import {
+  VisitCreationValidation,
+  VisitEditionValidation,
+} from './visit-validation';
 import { VisitsService } from './visits.service';
 
 @Controller('visits')
@@ -42,6 +46,10 @@ export class VisitsController {
 
   @Post()
   createNewVisit(@Body() visitDto: CreateVisitDto) {
+    const visit = VisitCreationValidation.validate(visitDto);
+    if (visit.error) {
+      return visit.error;
+    }
     return this.visitsService.create(visitDto);
   }
 
@@ -65,6 +73,10 @@ export class VisitsController {
 
   @Patch(':id')
   updateVisit(@Param('id') visitId: string, @Body() visitDto: EditVisitDto) {
+    const visit = VisitEditionValidation.validate(visitDto);
+    if (visit.error) {
+      return visit.error;
+    }
     return this.visitsService.update(visitId, visitDto);
   }
 }

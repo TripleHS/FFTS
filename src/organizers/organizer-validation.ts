@@ -4,23 +4,12 @@ import { EditOrganizerDto } from 'src/dto/organizers/edit-organizer.dto';
 
 export class OrganizerCreationValidation {
   private static schema = Joi.object({
-    title: Joi.string()
-      .trim()
-      .alphanum()
-      .min(3)
-      .max(25)
-      .required()
-      .message(`Title is required and have to containt 3 to 25 characters!`),
+    title: Joi.string().trim().min(3).max(25).required(),
     userId: Joi.string()
       .trim()
-      .uuid()
-      .required()
-      .message(`User id in UUID format is required!`),
-    addressId: Joi.string()
-      .trim()
-      .uuid()
-      .required()
-      .message(`Address id in UUID format is required!`),
+      // .uuid()
+      .required(),
+    addressId: Joi.string().trim().uuid().required(),
   });
 
   static validate(organizerDto: CreateOrganizerDto) {
@@ -30,16 +19,8 @@ export class OrganizerCreationValidation {
 
 export class OrganizerEditionValidation {
   private static schema = Joi.object({
-    title: Joi.string()
-      .trim()
-      .alphanum()
-      .min(3)
-      .max(25)
-      .message(`Title have to containt 3 to 25 characters!`),
-    addressId: Joi.string()
-      .trim()
-      .uuid()
-      .message(`Address id is in incorrect format! Required UUID format!`),
+    title: Joi.string().trim().alphanum().min(3).max(25),
+    addressId: Joi.string().trim().uuid(),
   });
 
   static validate(organizerDto: EditOrganizerDto) {

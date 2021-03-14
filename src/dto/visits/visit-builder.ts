@@ -13,7 +13,10 @@ export class VisitBuilder {
   visitDto(visitDto: CreateVisitDto): VisitBuilder {
     Object.entries(visitDto)
       .filter(([key]) => key !== 'userId' && key !== 'organizerId')
-      .forEach(([key, value]) => (this.visit[key] = value.trim()));
+      .forEach(
+        ([key, value]) =>
+          (this.visit[key] = value instanceof String ? value.trim() : value),
+      );
     return this;
   }
 

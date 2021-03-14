@@ -1,11 +1,5 @@
 import { VisitType } from 'src/enums';
-import {
-  Column,
-  Entity,
-  ManyToMany,
-  ManyToOne,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Organizer } from '../organizers/organizer.entity';
 import { User } from '../users/user.entity';
 
@@ -19,7 +13,6 @@ export class Visit {
   duration: number;
   @Column({ name: 'visit_type', length: 15 })
   visitType: VisitType;
-  @ManyToMany(() => User, (user) => user.visits)
   users: User[];
   @ManyToOne(() => Organizer, (organizer) => organizer.visits, {
     cascade: true,

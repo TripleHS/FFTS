@@ -7,6 +7,7 @@ import {
   PrimaryGeneratedColumn,
   ManyToMany,
   OneToMany,
+  JoinColumn,
 } from 'typeorm';
 import { Visit } from '../visits/visit.entity';
 import { Organizer } from '../organizers/organizer.entity';
@@ -38,12 +39,13 @@ export class User {
   @Column({ length: 1000 })
   description?: string;
 
-  @OneToMany(() => Address, (address) => address.user, { cascade: true })
+  @OneToMany(() => Address, (address) => address.user)
   addresses?: Address[];
 
   @OneToMany(() => Organizer, (organizer) => organizer.user)
   organizers?: Organizer[];
 
-  @ManyToMany(() => Visit, (visit) => visit.users)
+  @ManyToMany(() => Visit, (visit) => visit.users, { cascade: true })
+  @JoinColumn()
   visits?: Visit[];
 }
