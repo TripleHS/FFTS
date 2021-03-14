@@ -1,4 +1,8 @@
 import { OmitType } from '@nestjs/swagger';
 import { User } from './user.entity';
 
-export class CreateUserDto extends OmitType(User, ['id'] as const) {}
+export class CreateUserDto extends OmitType(User, [
+  'id',
+  'addresses',
+  'organizers',
+] as const) {}
