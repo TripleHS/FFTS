@@ -9,7 +9,15 @@ import {
 } from 'class-validator';
 import { Address } from 'src/dto/addresses/address.entity';
 import { UserRole } from 'src/enums';
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToMany,
+  OneToMany,
+  JoinColumn,
+} from 'typeorm';
+import { Visit } from '../visits/visit.entity';
 import { Phone } from '../phones/phone.entity';
 import { Organizer } from '../organizers/organizer.entity';
 
@@ -69,4 +77,8 @@ export class User {
 
   @OneToMany(() => Phone, (phone) => phone.user, { cascade: true })
   phones: Phone[];
+
+  @ManyToMany(() => Visit, (visit) => visit.users, { cascade: true })
+  @JoinColumn()
+  visits?: Visit[];
 }
