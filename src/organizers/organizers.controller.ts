@@ -9,6 +9,10 @@ import {
 } from '@nestjs/common';
 import { CreateOrganizerDto } from 'src/dto/organizers/create-organizer.dto';
 import { EditOrganizerDto } from 'src/dto/organizers/edit-organizer.dto';
+import {
+  OrganizerCreationValidation,
+  OrganizerEditionValidation,
+} from './organizer-validation';
 import { OrganizersService } from './organizers.service';
 
 @Controller('organizers')
@@ -37,6 +41,10 @@ export class OrganizersController {
 
   @Post()
   create(@Body() organizerDto: CreateOrganizerDto) {
+    const organizer = OrganizerCreationValidation.validate(organizerDto);
+    if (organizer.error) {
+      return organizer.error;
+    }
     return this.organizersService.create(organizerDto);
   }
 
@@ -47,6 +55,10 @@ export class OrganizersController {
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() organizerDto: EditOrganizerDto) {
+    const organizer = OrganizerEditionValidation.validate(organizerDto);
+    if (organizer.error) {
+      return organizer.error;
+    }
     return this.organizersService.edit(id, organizerDto);
   }
 }

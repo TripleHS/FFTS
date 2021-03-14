@@ -9,8 +9,10 @@ import { WorkingHours } from './dto/working-hours/working-hours.entity';
 import { UsersModule } from './users/users.module';
 import { PhonesModule } from './phones/phones.module';
 import { Phone } from './dto/phones/phone.entity';
-import { OrganizersModule } from './organizers/organizers.module';
 import { Organizer } from './dto/organizers/organizer.entity';
+import { OrganizersModule } from './organizers/organizers.module';
+import { Visit } from './dto/visits/visit.entity';
+import { VisitsModule } from './visits/visits.module';
 import { WorkingHoursModule } from './working-hours/working-hours.module';
 
 @Module({
@@ -22,7 +24,7 @@ import { WorkingHoursModule } from './working-hours/working-hours.module';
       username: 'root',
       password: 'password',
       database: 'ffts',
-      entities: [User, Address, Phone, Organizer, WorkingHours],
+      entities: [User, Address, Phone, Organizer, Visit, WorkingHours],
       synchronize: true,
     }),
     UsersModule,
@@ -30,6 +32,7 @@ import { WorkingHoursModule } from './working-hours/working-hours.module';
     PhonesModule,
     OrganizersModule,
     WorkingHoursModule,
+    VisitsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
