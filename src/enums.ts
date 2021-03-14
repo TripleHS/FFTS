@@ -9,3 +9,8 @@ export enum VisitType {
   ONLINE = 'ONLINE',
   OFFICE = 'OFFICE',
 }
+
+export enum PhoneType {
+  MOBILE = 'MOBILE',
+  OFFICE = 'OFFICE',
+}
