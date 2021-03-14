@@ -4,8 +4,7 @@ import { EditVisitDto } from 'src/dto/visits/edit-visit.dto';
 import { VisitType } from 'src/enums';
 
 export class VisitCreationValidation {
-  private static userIds = Joi.string();
-  // .uuid();
+  private static userIds = Joi.string().uuid();
   private static schema = Joi.object({
     date: Joi.date().min('now'),
     duration: Joi.number().min(15).max(120).required(),

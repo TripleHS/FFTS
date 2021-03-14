@@ -5,10 +5,7 @@ import { EditOrganizerDto } from 'src/dto/organizers/edit-organizer.dto';
 export class OrganizerCreationValidation {
   private static schema = Joi.object({
     title: Joi.string().trim().min(3).max(25).required(),
-    userId: Joi.string()
-      .trim()
-      // .uuid()
-      .required(),
+    userId: Joi.string().trim().uuid().required(),
     addressId: Joi.string().trim().uuid().required(),
   });
 
@@ -19,7 +16,7 @@ export class OrganizerCreationValidation {
 
 export class OrganizerEditionValidation {
   private static schema = Joi.object({
-    title: Joi.string().trim().alphanum().min(3).max(25),
+    title: Joi.string().trim().min(3).max(25),
     addressId: Joi.string().trim().uuid(),
   });
 
