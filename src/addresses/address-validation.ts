@@ -34,7 +34,7 @@ export class AddressCreationValidation {
     additionalInfo: Joi.string()
       .trim()
       .max(1000)
-      .pattern(/^[\w\s]*$/),
+      .pattern(/^[\w\sąćęłńóśźżĄĆĘŁŃÓŚŹŻ]*$/),
     userId: Joi.string().uuid().required(),
   });
 
