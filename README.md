@@ -51,3 +51,5 @@ Special thanks to our mentor Aleksander!
 <img  align="left"  alt="Swagger"  width="26px"  src="http://pngimg.com/uploads/mysql/mysql_PNG23.png" />
 
 <img  align="left"  alt="MySQL"  width="26px"  src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Swagger-logo.png" />
+
+<img  align="left"  alt="Docker"  width="26px"  src="https://www.docker.com/sites/default/files/d8/styles/role_icon/public/2019-07/vertical-logo-monochromatic.png?itok=erja9lKc" />
