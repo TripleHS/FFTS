@@ -12,6 +12,8 @@ import { Organizer } from './dto/organizers/organizer.entity';
 import { OrganizersModule } from './organizers/organizers.module';
 import { Visit } from './dto/visits/visit.entity';
 import { VisitsModule } from './visits/visits.module';
+import { SpecializationsModule } from './specializations/specializations.module';
+import { Specialization } from './specializations/entities/specialization.entity';
 
 @Module({
   imports: [
@@ -22,7 +24,7 @@ import { VisitsModule } from './visits/visits.module';
       username: 'root',
       password: 'password',
       database: 'ffts',
-      entities: [User, Address, Phone, Organizer, Visit],
+      entities: [User, Address, Phone, Organizer, Visit, Specialization],
       synchronize: true,
     }),
     UsersModule,
@@ -30,6 +32,7 @@ import { VisitsModule } from './visits/visits.module';
     PhonesModule,
     OrganizersModule,
     VisitsModule,
+    SpecializationsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
