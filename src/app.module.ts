@@ -14,6 +14,8 @@ import { OrganizersModule } from './organizers/organizers.module';
 import { Visit } from './dto/visits/visit.entity';
 import { VisitsModule } from './visits/visits.module';
 import { WorkingHoursModule } from './working-hours/working-hours.module';
+import { SpecializationsModule } from './specializations/specializations.module';
+import { Specialization } from './specializations/entities/specialization.entity';
 
 @Module({
   imports: [
@@ -24,7 +26,15 @@ import { WorkingHoursModule } from './working-hours/working-hours.module';
       username: 'root',
       password: 'password',
       database: 'ffts',
-      entities: [User, Address, Phone, Organizer, Visit, WorkingHours],
+      entities: [
+        User,
+        Address,
+        Phone,
+        Organizer,
+        Visit,
+        Specialization,
+        WorkingHours,
+      ],
       synchronize: true,
     }),
     UsersModule,
@@ -33,6 +43,7 @@ import { WorkingHoursModule } from './working-hours/working-hours.module';
     OrganizersModule,
     WorkingHoursModule,
     VisitsModule,
+    SpecializationsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
