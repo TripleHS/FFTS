@@ -14,10 +14,10 @@ async function bootstrap() {
         .setDescription('FFTS api')
         .setVersion('1.0')
         .build();
-    const document = swagger_1.SwaggerModule.createDocument(app, config);
-    swagger_1.SwaggerModule.setup('api', app, document);
     const PORT = process.env.PORT || 80;
     await app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
+    const document = swagger_1.SwaggerModule.createDocument(app, config);
+    swagger_1.SwaggerModule.setup('api', app, document);
 }
 bootstrap();
 //# sourceMappingURL=main.js.map
