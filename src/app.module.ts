@@ -14,6 +14,9 @@ import { Visit } from './dto/visits/visit.entity';
 import { VisitsModule } from './visits/visits.module';
 import { SpecializationsModule } from './specializations/specializations.module';
 import { Specialization } from './specializations/entities/specialization.entity';
+import * as dotenv from 'dotenv';
+
+dotenv.config();
 
 @Module({
   imports: [
