@@ -19,11 +19,11 @@ import { Specialization } from './specializations/entities/specialization.entity
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'remotemysql.com',
-      port: 3306,
-      username: 'TtEhSSiGPc',
-      password: 'URLyXZVVER',
-      database: 'TtEhSSiGPc',
+      host: process.env.DATABASE_HOST,
+      port: parseInt(process.env.DATABASE_PORT),
+      username: process.env.DATABASE_USERNAME,
+      password: process.env.DATABASE_PASSWORD,
+      database: process.env.DATABASE_NAME,
       entities: [User, Address, Phone, Organizer, Visit, Specialization],
       synchronize: true,
     }),
