@@ -11,7 +11,7 @@ export class AppController {
   }
 
   @Get()
-  @Redirect('http://localhost:7000/api', 301)
+  @Redirect('api', 301)
   index() {
     return 'ok';
   }

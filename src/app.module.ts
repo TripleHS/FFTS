@@ -14,18 +14,22 @@ import { Visit } from './dto/visits/visit.entity';
 import { VisitsModule } from './visits/visits.module';
 import { SpecializationsModule } from './specializations/specializations.module';
 import { Specialization } from './specializations/entities/specialization.entity';
+import * as dotenv from 'dotenv';
+
+dotenv.config();
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost',
-      port: 3307,
-      username: 'root',
-      password: 'password',
-      database: 'ffts',
+      host: process.env.DATABASE_HOST,
+      port: parseInt(process.env.DATABASE_PORT),
+      username: process.env.DATABASE_USERNAME,
+      password: process.env.DATABASE_PASSWORD,
+      database: process.env.DATABASE_NAME,
       entities: [User, Address, Phone, Organizer, Visit, Specialization],
       synchronize: true,
+      ssl: true,
     }),
     UsersModule,
     AddressesModule,
