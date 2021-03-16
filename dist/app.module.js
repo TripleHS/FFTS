@@ -29,7 +29,6 @@ AppModule = __decorate([
     common_1.Module({
         imports: [
             typeorm_1.TypeOrmModule.forRoot({
-                name: 'ffts',
                 type: 'postgres',
                 host: 'ec2-54-155-35-88.eu-west-1.compute.amazonaws.com',
                 port: 5432,
@@ -39,6 +38,7 @@ AppModule = __decorate([
                 synchronize: true,
                 logging: false,
                 entities: [user_entity_1.User, address_entity_1.Address, phone_entity_1.Phone, organizer_entity_1.Organizer, visit_entity_1.Visit, specialization_entity_1.Specialization],
+                ssl: true,
             }),
             users_module_1.UsersModule,
             addresses_module_1.AddressesModule,

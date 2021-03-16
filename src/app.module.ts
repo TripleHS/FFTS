@@ -18,7 +18,6 @@ import { Specialization } from './specializations/entities/specialization.entity
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      name: 'ffts',
       type: 'postgres',
       host: 'ec2-54-155-35-88.eu-west-1.compute.amazonaws.com',
       port: 5432,
@@ -29,6 +28,7 @@ import { Specialization } from './specializations/entities/specialization.entity
       synchronize: true,
       logging: false,
       entities: [User, Address, Phone, Organizer, Visit, Specialization],
+      ssl: true,
     }),
     UsersModule,
     AddressesModule,
