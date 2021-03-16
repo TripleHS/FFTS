@@ -33,7 +33,7 @@ __decorate([
 ], AppController.prototype, "getHello", null);
 __decorate([
     common_1.Get(),
-    common_1.Redirect('http://localhost:7000/api', 301),
+    common_1.Redirect('https://far-from-the-stretcher.herokuapp.com/api', 301),
     openapi.ApiResponse({ status: 200, type: String }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
