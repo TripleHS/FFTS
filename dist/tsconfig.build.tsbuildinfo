@@ -3482,7 +3482,7 @@
         "affectsGlobalScope": false
       },
       "../src/dto/visits/visit.entity.ts": {
-        "version": "59ab502254e68f2944b00f33610438040891165bd9a0943f49f93754c02afaff",
+        "version": "30b3e1a9829aad9e892244d0784dd2ecfa57395e4eb13f429a89b2a644b8dee4",
         "signature": "01b9656bcfd0735a7c7df61a782c39a6c93f7b12d62d4772e8dd76017b9b5a10",
         "affectsGlobalScope": false
       },

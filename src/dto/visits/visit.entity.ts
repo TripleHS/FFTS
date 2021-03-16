@@ -7,7 +7,7 @@ import { User } from '../users/user.entity';
 export class Visit {
   @PrimaryGeneratedColumn('uuid')
   id: string;
-  @Column({ type: 'datetime' })
+  @Column({ type: 'timestamp' })
   date: Date;
   @Column({ type: 'int' })
   duration: number;

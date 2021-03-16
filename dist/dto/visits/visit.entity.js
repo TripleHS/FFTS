@@ -24,7 +24,7 @@ __decorate([
     __metadata("design:type", String)
 ], Visit.prototype, "id", void 0);
 __decorate([
-    typeorm_1.Column({ type: 'datetime' }),
+    typeorm_1.Column({ type: 'timestamp' }),
     __metadata("design:type", Date)
 ], Visit.prototype, "date", void 0);
 __decorate([
