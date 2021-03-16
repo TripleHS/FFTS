@@ -9,20 +9,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
-const address_entity_1 = require("./dto/addresses/address.entity");
 const addresses_module_1 = require("./addresses/addresses.module");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
-const user_entity_1 = require("./dto/users/user.entity");
 const users_module_1 = require("./users/users.module");
 const phones_module_1 = require("./phones/phones.module");
-const phone_entity_1 = require("./dto/phones/phone.entity");
-const organizer_entity_1 = require("./dto/organizers/organizer.entity");
 const organizers_module_1 = require("./organizers/organizers.module");
-const visit_entity_1 = require("./dto/visits/visit.entity");
 const visits_module_1 = require("./visits/visits.module");
 const specializations_module_1 = require("./specializations/specializations.module");
-const specialization_entity_1 = require("./specializations/entities/specialization.entity");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -35,7 +29,14 @@ AppModule = __decorate([
                 username: 'TtEhSSiGPc',
                 password: 'URLyXZVVER',
                 database: 'TtEhSSiGPc',
-                entities: [user_entity_1.User, address_entity_1.Address, phone_entity_1.Phone, organizer_entity_1.Organizer, visit_entity_1.Visit, specialization_entity_1.Specialization],
+                entities: [
+                    'dist/dto/users/user.entity.js',
+                    'dist/dto/addresses/address.entity.js',
+                    'dist/dto/phones/phone.entity.js',
+                    'dist/dto/organizers/organizer.entity.js',
+                    'dist/dto/visits/visit.entity.js',
+                    'dist/dto/specializations/specialization.entity.js',
+                ],
                 synchronize: true,
             }),
             users_module_1.UsersModule,
