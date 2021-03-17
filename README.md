@@ -1,73 +1,55 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
-</p>
+# CodersCamp 2020 - Projekt REST API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+**CodersCamp (coderscamp.edu.pl) - Największy otwarty kurs programowania webowego**
+ 
+# Far From The Stretchers - REST API
+  
+Welcome to our project of REST API to the Far From The Stretchers. FFTS will allow for convenient searching a doctor and booking a visit. 
+There's nothing easier! You will find a doctor by specialty and the interested location. When you find a doctor you should select a free date
+and voilà! All necessary information about the visit will be in your account organiser. For your convenience you can create an user account
+and add personal details or check upcoming visits. As a medical specialists you should take care of your patient, so you have the possibility
+of adding address of doctor's office, working hours, approximate service prices and a few words about yourself.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+Version 1.0
+---
 
-## Description
+Hi, We are TripleHS ! 👋
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Here's a link to the website, where you can check out our app:
+https://far-from-the-stretchers.herokuapp.com/api
 
-## Installation
+---
 
-```bash
-$ npm install
-```
+:point_right: Contributors:
 
-## Running the app
+:man_technologist: Dominik https://github.com/DominikNowak
 
-```bash
-# development
-$ npm run start
+:man_technologist: Sebastian https://github.com/Enessetere
 
-# watch mode
-$ npm run start:dev
+:man_technologist: Sebastian https://github.com/SebastianBabinski1
 
-# production mode
-$ npm run start:prod
-```
+Special thanks to our mentor Aleksander!
 
-## Test
+:man_teacher: https://github.com/aleksanderwalczuk
 
-```bash
-# unit tests
-$ npm run test
+ ---
+ 
+:hammer_and_wrench: Languages and Tools:
 
-# e2e tests
-$ npm run test:e2e
+<img  align="left"  alt="Visual Studio Code"  width="26px"  src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/visual-studio-code/visual-studio-code.png" />
 
-# test coverage
-$ npm run test:cov
-```
+<img  align="left"  alt="GitHub"  width="26px"  src="https://raw.githubusercontent.com/github/explore/78df643247d429f6cc873026c0622819ad797942/topics/github/github.png" />
 
-## Support
+<img  align="left"  alt="Typescript"  width="26px"  src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/typescript/typescript.png" />
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+<img  align="left"  alt="Lodash"  width="26px"  src="https://cdn.iconscout.com/icon/free/png-256/lodash-283360.png" />
 
-## Stay in touch
+<img  align="left"  alt="NestJS"  width="26px"  src="https://seeklogo.com/images/N/nestjs-logo-09342F76C0-seeklogo.com.png" />
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+<img  align="left"  alt="TypeORM"  width="26px"  src="https://pbs.twimg.com/profile_images/910823614521454592/oeIWV7Mf_400x400.jpg" />
 
-## License
+<img  align="left"  alt="Swagger"  width="26px"  src="http://pngimg.com/uploads/mysql/mysql_PNG23.png" />
 
-Nest is [MIT licensed](LICENSE).
+<img  align="left"  alt="MySQL"  width="26px"  src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Swagger-logo.png" />
+
+<img  align="left"  alt="Docker"  width="26px"  src="https://www.docker.com/sites/default/files/d8/styles/role_icon/public/2019-07/vertical-logo-monochromatic.png?itok=erja9lKc" />
