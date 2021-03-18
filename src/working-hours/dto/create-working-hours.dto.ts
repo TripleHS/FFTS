@@ -3,4 +3,7 @@ import { WorkingHours } from '../entites/working-hours.entity';
 
 export class CreateWorkingHoursDto extends OmitType(WorkingHours, [
   'id',
-] as const) {}
+  'organizer',
+] as const) {
+  organizerId: string;
+}
