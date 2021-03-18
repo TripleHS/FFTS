@@ -1,12 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { indexOf } from 'lodash';
 import { AddressesService } from 'src/addresses/addresses.service';
-import { Address } from 'src/dto/addresses/address.entity';
-import { CreateOrganizerDto } from 'src/dto/organizers/create-organizer.dto';
-import { EditOrganizerDto } from 'src/dto/organizers/edit-organizer.dto';
-import { Organizer } from 'src/dto/organizers/organizer.entity';
-import { OrganizerBuilder } from 'src/dto/organizers/organzier-builder';
+import { Address } from 'src/addresses/entities/address.entity';
+import { CreateOrganizerDto } from 'src/organizers/dto/create-organizer.dto';
+import { EditOrganizerDto } from 'src/organizers/dto/edit-organizer.dto';
+import { Organizer } from 'src/organizers/entities/organizer.entity';
+import { OrganizerBuilder } from 'src/organizers/organzier-builder';
 import { User } from 'src/dto/users/user.entity';
 import { UsersService } from 'src/users/users.service';
 import { Repository } from 'typeorm';

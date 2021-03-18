@@ -7,8 +7,8 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
-import { CreateVisitDto } from 'src/dto/visits/create-visit.dto';
-import { EditVisitDto } from 'src/dto/visits/edit-visit.dto';
+import { CreateVisitDto } from 'src/visits/dto/create-visit.dto';
+import { EditVisitDto } from 'src/visits/dto/edit-visit.dto';
 import {
   VisitCreationValidation,
   VisitEditionValidation,

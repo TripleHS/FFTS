@@ -1,6 +1,6 @@
 import * as Joi from 'joi';
-import { CreateVisitDto } from 'src/dto/visits/create-visit.dto';
-import { EditVisitDto } from 'src/dto/visits/edit-visit.dto';
+import { CreateVisitDto } from 'src/visits/dto/create-visit.dto';
+import { EditVisitDto } from 'src/visits/dto/edit-visit.dto';
 import { VisitType } from 'src/enums';
 
 export class VisitCreationValidation {

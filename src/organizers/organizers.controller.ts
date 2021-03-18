@@ -7,8 +7,8 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
-import { CreateOrganizerDto } from 'src/dto/organizers/create-organizer.dto';
-import { EditOrganizerDto } from 'src/dto/organizers/edit-organizer.dto';
+import { CreateOrganizerDto } from 'src/organizers/dto/create-organizer.dto';
+import { EditOrganizerDto } from 'src/organizers/dto/edit-organizer.dto';
 import {
   OrganizerCreationValidation,
   OrganizerEditionValidation,

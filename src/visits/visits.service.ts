@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from 'src/dto/users/user.entity';
-import { CreateVisitDto } from 'src/dto/visits/create-visit.dto';
-import { EditVisitDto } from 'src/dto/visits/edit-visit.dto';
-import { VisitBuilder } from 'src/dto/visits/visit-builder';
-import { Visit } from 'src/dto/visits/visit.entity';
+import { CreateVisitDto } from 'src/visits/dto/create-visit.dto';
+import { EditVisitDto } from 'src/visits/dto/edit-visit.dto';
+import { VisitBuilder } from 'src/visits/visit-builder';
+import { Visit } from 'src/visits/entities/visit.entity';
 import { OrganizersService } from 'src/organizers/organizers.service';
 import { UsersService } from 'src/users/users.service';
 import { Repository } from 'typeorm';
