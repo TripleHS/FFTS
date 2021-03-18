@@ -7,8 +7,8 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
-import { CreateAddressDto } from 'src/dto/addresses/create-address.dto';
-import { EditAddressDto } from 'src/dto/addresses/edit-address.dto';
+import { CreateAddressDto } from 'src/addresses/dto/create-address.dto';
+import { EditAddressDto } from 'src/addresses/dto/edit-address.dto';
 import {
   AddressCreationValidation,
   AddressEditionValidation,

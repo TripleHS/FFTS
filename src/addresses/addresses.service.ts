@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CreateAddressDto } from 'src/dto/addresses/create-address.dto';
-import { EditAddressDto } from 'src/dto/addresses/edit-address.dto';
+import { CreateAddressDto } from 'src/addresses/dto/create-address.dto';
+import { EditAddressDto } from 'src/addresses/dto/edit-address.dto';
 import { UsersService } from 'src/users/users.service';
 import { Repository } from 'typeorm';
-import { Address } from '../dto/addresses/address.entity';
-import { AddressBuilder } from '../dto/addresses/address-builder';
+import { Address } from './entities/address.entity';
+import { AddressBuilder } from './address-builder';
 
 @Injectable()
 export class AddressesService {

@@ -7,7 +7,7 @@ import {
   MaxLength,
   MinLength,
 } from 'class-validator';
-import { Address } from 'src/dto/addresses/address.entity';
+import { Address } from 'src/addresses/entities/address.entity';
 import { UserRole } from 'src/enums';
 import {
   Entity,
@@ -17,9 +17,9 @@ import {
   OneToMany,
   JoinColumn,
 } from 'typeorm';
-import { Visit } from '../visits/visit.entity';
+import { Visit } from '../../visits/entities/visit.entity';
 import { Phone } from '../phones/phone.entity';
-import { Organizer } from '../organizers/organizer.entity';
+import { Organizer } from '../../organizers/entities/organizer.entity';
 
 @Entity()
 export class User {
