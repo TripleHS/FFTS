@@ -87,7 +87,7 @@ export class AddressCreationValidation {
           'Additional info can containt letters and white spaces.',
       }),
     userId: Joi.string().uuid().required().messages({
-      'string.uuid': 'User id should be in UUID format.',
+      'string.guid': 'User id should be in UUID format.',
       'any.required': 'City is required.',
     }),
   });

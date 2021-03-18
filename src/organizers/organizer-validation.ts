@@ -18,11 +18,11 @@ export class OrganizerCreationValidation {
         'any.required': 'Title is required.',
       }),
     userId: Joi.string().trim().uuid().required().messages({
-      'string.uuid': 'User id should be in UUID format.',
+      'string.guid': 'User id should be in UUID format.',
       'any.required': 'User id is required.',
     }),
     addressId: Joi.string().trim().uuid().required().messages({
-      'string.uuid': 'Address id should be in UUID format.',
+      'string.guid': 'Address id should be in UUID format.',
       'any.required': 'Address id is required.',
     }),
   });
@@ -46,7 +46,7 @@ export class OrganizerEditionValidation {
           'Title can contain only letters, white spaces, numbers and dashes.',
       }),
     addressId: Joi.string().trim().uuid().messages({
-      'string.uuid': 'Address id should be in UUID format.',
+      'string.guid': 'Address id should be in UUID format.',
     }),
   });
 
