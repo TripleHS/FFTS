@@ -1,7 +1,7 @@
 import { VisitType } from 'src/enums';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Organizer } from '../../organizers/entities/organizer.entity';
-import { User } from '../../dto/users/user.entity';
+import { User } from '../../users/entities/user.entity';
 
 @Entity({ name: 'visits' })
 export class Visit {

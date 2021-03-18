@@ -1,6 +1,6 @@
 import { CreateOrganizerDto } from './dto/create-organizer.dto';
 import { Organizer } from './entities/organizer.entity';
-import { User } from '../dto/users/user.entity';
+import { User } from '../users/entities/user.entity';
 import { Address } from '../addresses/entities/address.entity';
 
 export class OrganizerBuilder {

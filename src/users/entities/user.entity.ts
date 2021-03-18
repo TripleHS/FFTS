@@ -18,7 +18,7 @@ import {
   JoinColumn,
 } from 'typeorm';
 import { Visit } from '../../visits/entities/visit.entity';
-import { Phone } from '../phones/phone.entity';
+import { Phone } from '../../phones/entities/phone.entity';
 import { Organizer } from '../../organizers/entities/organizer.entity';
 
 @Entity()

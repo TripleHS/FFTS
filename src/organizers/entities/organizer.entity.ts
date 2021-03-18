@@ -7,7 +7,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Address } from '../../addresses/entities/address.entity';
-import { User } from '../../dto/users/user.entity';
+import { User } from '../../users/entities/user.entity';
 import { Visit } from '../../visits/entities/visit.entity';
 
 @Entity({ name: 'organizers' })

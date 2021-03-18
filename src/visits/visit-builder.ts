@@ -1,5 +1,5 @@
 import { Organizer } from '../organizers/entities/organizer.entity';
-import { User } from '../dto/users/user.entity';
+import { User } from '../users/entities/user.entity';
 import { CreateVisitDto } from './dto/create-visit.dto';
 import { Visit } from './entities/visit.entity';
 

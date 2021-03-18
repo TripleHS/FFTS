@@ -6,7 +6,7 @@ import { CreateOrganizerDto } from 'src/organizers/dto/create-organizer.dto';
 import { EditOrganizerDto } from 'src/organizers/dto/edit-organizer.dto';
 import { Organizer } from 'src/organizers/entities/organizer.entity';
 import { OrganizerBuilder } from 'src/organizers/organzier-builder';
-import { User } from 'src/dto/users/user.entity';
+import { User } from 'src/users/entities/user.entity';
 import { UsersService } from 'src/users/users.service';
 import { Repository } from 'typeorm';
 

@@ -1,5 +1,5 @@
 import { CreateAddressDto } from 'src/addresses/dto/create-address.dto';
-import { User } from 'src/dto/users/user.entity';
+import { User } from 'src/users/entities/user.entity';
 import { Address } from './entities/address.entity';
 
 export class AddressBuilder {
