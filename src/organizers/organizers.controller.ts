@@ -3,10 +3,13 @@ import {
   Controller,
   Delete,
   Get,
+  HttpException,
+  HttpStatus,
   Param,
   Patch,
   Post,
 } from '@nestjs/common';
+import { ValidationResult } from 'joi';
 import { CreateOrganizerDto } from 'src/organizers/dto/create-organizer.dto';
 import { EditOrganizerDto } from 'src/organizers/dto/edit-organizer.dto';
 import {
@@ -41,11 +44,17 @@ export class OrganizersController {
 
   @Post()
   create(@Body() organizerDto: CreateOrganizerDto) {
-    const organizer = OrganizerCreationValidation.validate(organizerDto);
-    if (organizer.error) {
-      return organizer.error;
-    }
+    this.validationCheck(OrganizerCreationValidation.validate(organizerDto));
     return this.organizersService.create(organizerDto);
+  }
+
+  private validationCheck(organizer: ValidationResult) {
+    if (organizer.error) {
+      throw new HttpException(
+        `${organizer.error.details.map(({ message }) => message).join(' ')}`,
+        HttpStatus.BAD_REQUEST,
+      );
+    }
   }
 
   @Delete(':id')
@@ -55,10 +64,7 @@ export class OrganizersController {
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() organizerDto: EditOrganizerDto) {
-    const organizer = OrganizerEditionValidation.validate(organizerDto);
-    if (organizer.error) {
-      return organizer.error;
-    }
+    this.validationCheck(OrganizerEditionValidation.validate(organizerDto));
     return this.organizersService.edit(id, organizerDto);
   }
 }

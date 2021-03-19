@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { AddressesService } from 'src/addresses/addresses.service';
 import { Address } from 'src/addresses/entities/address.entity';
@@ -46,12 +46,16 @@ export class OrganizersService {
   async create(organizerDto: CreateOrganizerDto): Promise<Organizer> {
     const user = await this.usersService.findOne(organizerDto.userId);
     if (!user) {
-      throw new Error(`User with id '${organizerDto.userId}' does not exist!`);
+      throw new HttpException(
+        `Cannot find user with id ${organizerDto.userId}.`,
+        HttpStatus.BAD_REQUEST,
+      );
     }
     const address = await this.addressesService.findOne(organizerDto.addressId);
     if (!address) {
-      throw new Error(
-        `Address with id '${organizerDto.addressId}' does not exist!`,
+      throw new HttpException(
+        `Cannot find address with id ${organizerDto.addressId}.`,
+        HttpStatus.BAD_REQUEST,
       );
     }
     this.addressRegistered(user, address);
@@ -65,8 +69,9 @@ export class OrganizersService {
 
   private async addressRegistered(user: User, address: Address) {
     if (!user.addresses.filter(({ id }) => id == address.id)) {
-      throw new Error(
+      throw new HttpException(
         `Can't change address, desired address not registered to user!`,
+        HttpStatus.BAD_REQUEST,
       );
     }
   }
@@ -78,7 +83,10 @@ export class OrganizersService {
   async edit(id: string, organizerDto: EditOrganizerDto): Promise<void> {
     const organizer = await this.getOne(id);
     if (!organizer) {
-      throw new Error(`Organizer with id '${id}' does not exist!`);
+      throw new HttpException(
+        `Cannot find organizer with id ${id}.`,
+        HttpStatus.BAD_REQUEST,
+      );
     }
     Object.entries(organizerDto).forEach(async ([key, value]) =>
       key === 'addressId'
