@@ -3,6 +3,8 @@ import {
   Controller,
   Delete,
   Get,
+  HttpException,
+  HttpStatus,
   Param,
   Patch,
   Post,
@@ -48,7 +50,10 @@ export class VisitsController {
   createNewVisit(@Body() visitDto: CreateVisitDto) {
     const visit = VisitCreationValidation.validate(visitDto);
     if (visit.error) {
-      return visit.error;
+      throw new HttpException(
+        `${visit.error.details.map(({ message }) => message).join(' ')}`,
+        HttpStatus.BAD_REQUEST,
+      );
     }
     return this.visitsService.create(visitDto);
   }
@@ -75,7 +80,10 @@ export class VisitsController {
   updateVisit(@Param('id') visitId: string, @Body() visitDto: EditVisitDto) {
     const visit = VisitEditionValidation.validate(visitDto);
     if (visit.error) {
-      return visit.error;
+      throw new HttpException(
+        `${visit.error.details.map(({ message }) => message).join(' ')}`,
+        HttpStatus.BAD_REQUEST,
+      );
     }
     return this.visitsService.update(visitId, visitDto);
   }
