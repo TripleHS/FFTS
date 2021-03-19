@@ -3,8 +3,11 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { OrganizersService } from 'src/organizers/organizers.service';
 import { Repository } from 'typeorm';
 import { CreateWorkingHoursDto } from './dto/create-working-hours.dto';
+import { EditWorkingHoursDto } from './dto/edit-working-hours.dto';
 import { WorkingHours } from './entites/working-hours.entity';
 import { WorkingHoursBuilder } from './working-hours-builder';
+import { fillMissing } from 'object-fill-missing-keys';
+import { WorkingHoursEditionValidation } from './working-hours-validation';
 
 @Injectable()
 export class WorkingHoursService {
@@ -32,9 +35,7 @@ export class WorkingHoursService {
 
   getAllByDay(date: Date): Promise<WorkingHours[]> {
     return this.workingHoursRepository.find({
-      where: {
-        date: date.getDate(),
-      },
+      where: [{ date: date }, { shiftEndDate: date }],
     });
   }
 
@@ -48,6 +49,7 @@ export class WorkingHoursService {
         HttpStatus.NOT_FOUND,
       );
     }
+    this.validateHours(workingHoursDto);
     if (workingHoursDto.lunchTime && !workingHoursDto.lunchDuration) {
       workingHoursDto.lunchDuration = 15;
     }
@@ -56,5 +58,75 @@ export class WorkingHoursService {
       .organizer(organizer)
       .build();
     return this.workingHoursRepository.save(workingHours);
+  }
+
+  private validateHours({
+    shiftEndDate,
+    startHour,
+    endHour,
+    lunchTime,
+  }: CreateWorkingHoursDto) {
+    const error: string[] = [];
+    if (startHour > endHour && !shiftEndDate) {
+      error.push(
+        `Cannot add end hours before start or missing shift end date.`,
+      );
+    }
+    if (
+      (lunchTime < startHour && !shiftEndDate) ||
+      (lunchTime > endHour && !shiftEndDate)
+    ) {
+      error.push(`Lunch hour must be between start and end hours.`);
+    }
+    if (error.length) {
+      throw new HttpException(`${error.join(' ')}`, HttpStatus.BAD_REQUEST);
+    }
+  }
+
+  async update(
+    id: string,
+    workingHoursDto: EditWorkingHoursDto,
+  ): Promise<void> {
+    const workingHours = await this.getById(id);
+    if (!workingHours) {
+      throw new HttpException(
+        `Cannot find working hours with id ${id}`,
+        HttpStatus.NOT_FOUND,
+      );
+    }
+    const { id: idx, ...filledDto } = fillMissing(
+      workingHoursDto,
+      Object.assign({}, workingHours),
+      {
+        placeholder: true,
+        doNotFillThesePathsIfTheyContainPlaceholders: Object.keys(
+          workingHoursDto,
+        ),
+        useNullAsExplicitFalse: true,
+      },
+    );
+    this.validateHours(filledDto as CreateWorkingHoursDto);
+    if (filledDto.lunchTime && !filledDto.lunchDuration) {
+      filledDto.lunchDuration = 15;
+    }
+    const workingHoursEdit = WorkingHoursEditionValidation.validate(
+      filledDto as EditWorkingHoursDto,
+    );
+    if (workingHoursEdit.error) {
+      throw new HttpException(
+        `${workingHoursEdit.error.details
+          .map(({ message }) => message)
+          .join(' ')}`,
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+    Object.entries(filledDto).forEach(
+      ([key, value]) => (workingHours[key] = value),
+    );
+    await this.workingHoursRepository.save(workingHours);
+  }
+
+  async remove(id: string): Promise<void> {
+    await this.workingHoursRepository.delete(id);
   }
 }

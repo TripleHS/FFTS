@@ -1,5 +1,6 @@
 import * as Joi from 'joi';
 import { CreateWorkingHoursDto } from './dto/create-working-hours.dto';
+import { EditWorkingHoursDto } from './dto/edit-working-hours.dto';
 
 export class WorkingHoursCreationValidation {
   private static readonly schema = Joi.object({
@@ -10,16 +11,55 @@ export class WorkingHoursCreationValidation {
     date: Joi.date().required().messages({
       'any.required': 'Date is required.',
     }),
-    startHour: Joi.date()
-      .min(Joi.ref('date'))
+    shiftEndDate: Joi.date().greater(Joi.ref('date')).messages({
+      'date.greater': 'Shift end cannot be before start date.',
+    }),
+    startHour: Joi.string()
+      .pattern(/^([0-1][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$/)
       .required()
       .messages({
-        'date.min': `Working hours cannot start before ${Joi.ref('date')}`,
+        'string.pattern.base':
+          'Working hours for begin must be in pattern: HH:MM:SS.',
         'any.required': 'Work start hour is required',
       }),
-    endHour: Joi.date().greater(Joi.ref('startHour')).required().messages({
+    endHour: Joi.string()
+      .pattern(/^([0-1][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$/)
+      .required()
+      .messages({
+        'string.pattern.base':
+          'Working hours for end must be in pattern: HH:MM:SS.',
+        'any.required': 'Work end hour is required',
+      }),
+    lunchTime: Joi.string()
+      .pattern(/^([0-1][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$/)
+      .messages({
+        'string.pattern.base':
+          'Working hours for end must be in pattern: HH:MM:SS.',
+      }),
+    lunchDuration: Joi.number().min(15).max(60).messages({
+      'number.min': 'Lunch break have to be at least 15 min long.',
+      'number.max': 'Lunch break cannot be longer than 60 min.',
+    }),
+  });
+
+  static validate(workingHoursDto: CreateWorkingHoursDto) {
+    return this.schema.validate(workingHoursDto, { abortEarly: false });
+  }
+}
+
+export class WorkingHoursEditionValidation {
+  private static readonly schema = Joi.object({
+    date: Joi.date(),
+    shiftEndDate: Joi.date().greater(Joi.ref('date')).messages({
+      'date.greater': 'Shift end cannot be before start date.',
+    }),
+    startHour: Joi.date()
+      .min(Joi.ref('date'))
+      .messages({
+        'date.min': `Working hours cannot start before ${Joi.ref('date')}`,
+      }),
+    endHour: Joi.date().greater(Joi.ref('startHour')).messages({
       'date.greater': 'Work end hour have to be after start hour.',
-      'any.required': 'Work end hour is required',
     }),
     lunchTime: Joi.date()
       .min(Joi.ref('date'))
@@ -36,7 +76,7 @@ export class WorkingHoursCreationValidation {
     }),
   });
 
-  static validate(workingHoursDto: CreateWorkingHoursDto) {
-    this.schema.validate(workingHoursDto, { abortEarly: false });
+  static validate(workingHoursDto: EditWorkingHoursDto) {
+    return this.schema.validate(workingHoursDto, { abortEarly: false });
   }
 }

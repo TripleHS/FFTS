@@ -11,16 +11,19 @@ export class WorkingHours {
   })
   organizer: Organizer;
 
-  @Column({ name: 'date', type: 'datetime' })
+  @Column({ name: 'date', type: 'date' })
   date: Date;
 
-  @Column({ name: 'start-hour', type: 'datetime' })
+  @Column({ name: 'shift-end', type: 'date', nullable: true })
+  shiftEndDate: Date;
+
+  @Column({ name: 'start-hour', type: 'time' })
   startHour: Date;
 
-  @Column({ name: 'end-hour', type: 'datetime' })
+  @Column({ name: 'end-hour', type: 'time' })
   endHour: Date;
 
-  @Column({ name: 'lunch-time', type: 'datetime', nullable: true })
+  @Column({ name: 'lunch-time', type: 'time', nullable: true })
   lunchTime?: Date;
 
   @Column({ name: 'lunch-duration', type: 'int', nullable: true })
