@@ -6,8 +6,13 @@ export class WorkingHours {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @ManyToOne(() => Organizer, (organizer) => organizer.workingHours)
+  @ManyToOne(() => Organizer, (organizer) => organizer.workingHours, {
+    cascade: true,
+  })
   organizer: Organizer;
+
+  @Column({ name: 'date', type: 'datetime' })
+  date: Date;
 
   @Column({ name: 'start-hour', type: 'datetime' })
   startHour: Date;
@@ -15,9 +20,9 @@ export class WorkingHours {
   @Column({ name: 'end-hour', type: 'datetime' })
   endHour: Date;
 
-  @Column({ name: 'lunch-time', type: 'datetime' })
-  lunchTime: Date;
+  @Column({ name: 'lunch-time', type: 'datetime', nullable: true })
+  lunchTime?: Date;
 
-  @Column({ name: 'lunch-duration', type: 'int' })
-  lunchDuration: number;
+  @Column({ name: 'lunch-duration', type: 'int', nullable: true })
+  lunchDuration?: number;
 }

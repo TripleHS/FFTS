@@ -1,3 +1,4 @@
+import { Organizer } from 'src/organizers/entities/organizer.entity';
 import { CreateWorkingHoursDto } from './dto/create-working-hours.dto';
 import { WorkingHours } from './entites/working-hours.entity';
 
@@ -14,6 +15,11 @@ export class WorkingHoursBuilder {
         (this.workingHours[key] =
           value instanceof String ? value.trim() : value),
     );
+    return this;
+  }
+
+  organizer(organizer: Organizer): WorkingHoursBuilder {
+    this.workingHours.organizer = organizer;
     return this;
   }
 
