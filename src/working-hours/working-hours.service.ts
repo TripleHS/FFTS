@@ -4,7 +4,7 @@ import { OrganizersService } from 'src/organizers/organizers.service';
 import { Repository } from 'typeorm';
 import { CreateWorkingHoursDto } from './dto/create-working-hours.dto';
 import { EditWorkingHoursDto } from './dto/edit-working-hours.dto';
-import { WorkingHours } from './entites/working-hours.entity';
+import { WorkingHours } from './entities/working-hours.entity';
 import { WorkingHoursBuilder } from './working-hours-builder';
 import { fillMissing } from 'object-fill-missing-keys';
 import { WorkingHoursEditionValidation } from './working-hours-validation';

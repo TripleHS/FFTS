@@ -1,4 +1,4 @@
-import { WorkingHours } from 'src/working-hours/entites/working-hours.entity';
+import { WorkingHours } from 'src/working-hours/entities/working-hours.entity';
 import {
   Column,
   Entity,

@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { WorkingHoursService } from './working-hours.service';
 import { WorkingHoursController } from './working-hours.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { WorkingHours } from './entites/working-hours.entity';
+import { WorkingHours } from './entities/working-hours.entity';
 import { OrganizersModule } from 'src/organizers/organizers.module';
 
 @Module({

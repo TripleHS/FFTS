@@ -1,6 +1,6 @@
 import { Organizer } from 'src/organizers/entities/organizer.entity';
 import { CreateWorkingHoursDto } from './dto/create-working-hours.dto';
-import { WorkingHours } from './entites/working-hours.entity';
+import { WorkingHours } from './entities/working-hours.entity';
 
 export class WorkingHoursBuilder {
   private workingHours: WorkingHours;
