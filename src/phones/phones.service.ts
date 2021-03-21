@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CreatePhoneDto } from 'src/dto/phones/create-phone.dto';
-import { Phone } from 'src/dto/phones/phone.entity';
+import { CreatePhoneDto } from 'src/phones/dto/create-phone.dto';
+import { Phone } from 'src/phones/entities/phone.entity';
 import { UsersService } from 'src/users/users.service';
 import { Repository } from 'typeorm';
 

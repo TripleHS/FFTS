@@ -3,12 +3,15 @@ import {
   Controller,
   Delete,
   Get,
+  HttpException,
+  HttpStatus,
   Param,
   Patch,
   Post,
 } from '@nestjs/common';
-import { CreateVisitDto } from 'src/dto/visits/create-visit.dto';
-import { EditVisitDto } from 'src/dto/visits/edit-visit.dto';
+import { ValidationResult } from 'joi';
+import { CreateVisitDto } from 'src/visits/dto/create-visit.dto';
+import { EditVisitDto } from 'src/visits/dto/edit-visit.dto';
 import {
   VisitCreationValidation,
   VisitEditionValidation,
@@ -46,11 +49,15 @@ export class VisitsController {
 
   @Post()
   createNewVisit(@Body() visitDto: CreateVisitDto) {
-    const visit = VisitCreationValidation.validate(visitDto);
-    if (visit.error) {
-      return visit.error;
-    }
+    this.checkValidation(VisitCreationValidation.validate(visitDto));
     return this.visitsService.create(visitDto);
+  }
+
+  private checkValidation(visit: ValidationResult) {
+    throw new HttpException(
+      `${visit.error.details.map(({ message }) => message).join(' ')}`,
+      HttpStatus.BAD_REQUEST,
+    );
   }
 
   @Post(':id/users/:uid')
@@ -73,10 +80,7 @@ export class VisitsController {
 
   @Patch(':id')
   updateVisit(@Param('id') visitId: string, @Body() visitDto: EditVisitDto) {
-    const visit = VisitEditionValidation.validate(visitDto);
-    if (visit.error) {
-      return visit.error;
-    }
+    this.checkValidation(VisitEditionValidation.validate(visitDto));
     return this.visitsService.update(visitId, visitDto);
   }
 }

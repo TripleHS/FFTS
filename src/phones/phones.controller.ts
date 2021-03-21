@@ -1,5 +1,5 @@
 import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
-import { CreatePhoneDto } from 'src/dto/phones/create-phone.dto';
+import { CreatePhoneDto } from 'src/phones/dto/create-phone.dto';
 import { PhonesService } from './phones.service';
 
 @Controller('phones')

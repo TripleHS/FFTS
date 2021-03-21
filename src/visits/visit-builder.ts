@@ -1,7 +1,7 @@
-import { Organizer } from '../organizers/organizer.entity';
-import { User } from '../users/user.entity';
-import { CreateVisitDto } from './create-visit.dto';
-import { Visit } from './visit.entity';
+import { Organizer } from '../organizers/entities/organizer.entity';
+import { User } from '../users/entities/user.entity';
+import { CreateVisitDto } from './dto/create-visit.dto';
+import { Visit } from './entities/visit.entity';
 
 export class VisitBuilder {
   private visit: Visit;

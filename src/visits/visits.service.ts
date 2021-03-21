@@ -1,10 +1,10 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { User } from 'src/dto/users/user.entity';
-import { CreateVisitDto } from 'src/dto/visits/create-visit.dto';
-import { EditVisitDto } from 'src/dto/visits/edit-visit.dto';
-import { VisitBuilder } from 'src/dto/visits/visit-builder';
-import { Visit } from 'src/dto/visits/visit.entity';
+import { User } from 'src/users/entities/user.entity';
+import { CreateVisitDto } from 'src/visits/dto/create-visit.dto';
+import { EditVisitDto } from 'src/visits/dto/edit-visit.dto';
+import { VisitBuilder } from 'src/visits/visit-builder';
+import { Visit } from 'src/visits/entities/visit.entity';
 import { OrganizersService } from 'src/organizers/organizers.service';
 import { UsersService } from 'src/users/users.service';
 import { Repository } from 'typeorm';
@@ -49,11 +49,17 @@ export class VisitsService {
   async create(visitDto: CreateVisitDto): Promise<Visit> {
     const users = await this.usersService.findAllById(visitDto.userIds);
     if (!users) {
-      throw new Error('Cannot create visit, unknown users.');
+      throw new HttpException(
+        `Users ids missing or not existing.`,
+        HttpStatus.BAD_REQUEST,
+      );
     }
     const organizer = await this.organizersService.getOne(visitDto.organizerId);
     if (!organizer) {
-      throw new Error('Cannot create visit, unknown organizer.');
+      throw new HttpException(
+        `Cannot find organizer with id ${visitDto.organizerId}.`,
+        HttpStatus.BAD_REQUEST,
+      );
     }
     const visit = new VisitBuilder()
       .visitDto(visitDto)
@@ -70,7 +76,10 @@ export class VisitsService {
   async update(id: string, visitDto: EditVisitDto): Promise<void> {
     const visit = await this.getOne(id);
     if (!visit) {
-      throw new Error(`Visit with id '${id}' does not exist!`);
+      throw new HttpException(
+        `Cannot find visit with id ${id}.`,
+        HttpStatus.BAD_REQUEST,
+      );
     }
     Object.entries(visitDto).forEach(([key, value]) => (visit[key] = value));
     await this.visitsRepository.save(visit);
@@ -79,12 +88,18 @@ export class VisitsService {
   async addUser(visitId: string, userId: string): Promise<void> {
     const visit = await this.getOne(visitId);
     if (!visit) {
-      throw new Error();
+      throw new HttpException(
+        `Cannot find visit with id ${visitId}.`,
+        HttpStatus.BAD_REQUEST,
+      );
     }
     if (visit.users.filter(({ id }) => userId == id)) {
       const user = await this.usersService.findOne(userId);
       if (!user) {
-        throw new Error();
+        throw new HttpException(
+          `Cannot find user with id ${userId}.`,
+          HttpStatus.BAD_REQUEST,
+        );
       }
       visit.users.push(user);
       this.visitsRepository.save(visit);
@@ -94,7 +109,10 @@ export class VisitsService {
   async removeUser(visitId: string, userId: string): Promise<void> {
     const visit = await this.getOne(visitId);
     if (!visit) {
-      throw new Error();
+      throw new HttpException(
+        `Cannot find visit with id ${visitId}.`,
+        HttpStatus.BAD_REQUEST,
+      );
     }
     const user = visit.users.filter(({ id }) => id == userId)[0];
     const userIndex = visit.users.indexOf(user);

@@ -1,5 +1,5 @@
 import { OmitType } from '@nestjs/swagger';
-import { Visit } from './visit.entity';
+import { Visit } from '../entities/visit.entity';
 
 export class CreateVisitDto extends OmitType(Visit, [
   'id',

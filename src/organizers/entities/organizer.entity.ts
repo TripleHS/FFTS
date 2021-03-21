@@ -1,3 +1,4 @@
+import { WorkingHours } from 'src/working-hours/entities/working-hours.entity';
 import {
   Column,
   Entity,
@@ -5,9 +6,9 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Address } from '../addresses/address.entity';
-import { User } from '../users/user.entity';
-import { Visit } from '../visits/visit.entity';
+import { Address } from '../../addresses/entities/address.entity';
+import { User } from '../../users/entities/user.entity';
+import { Visit } from '../../visits/entities/visit.entity';
 
 @Entity({ name: 'organizers' })
 export class Organizer {
@@ -20,5 +21,7 @@ export class Organizer {
   @ManyToOne(() => Address, (address) => address.organizers, { cascade: true })
   address: Address;
   @OneToMany(() => Visit, (visit) => visit.organizer)
-  visits: Visit[];
+  visits?: Visit[];
+  @OneToMany(() => WorkingHours, (workingHours) => workingHours.organizer)
+  workingHours?: WorkingHours[];
 }

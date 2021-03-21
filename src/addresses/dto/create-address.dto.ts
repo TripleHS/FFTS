@@ -1,6 +1,6 @@
 import { OmitType } from '@nestjs/swagger';
 import { IsString } from 'class-validator';
-import { Address } from './address.entity';
+import { Address } from '../entities/address.entity';
 
 export class CreateAddressDto extends OmitType(Address, [
   'id',

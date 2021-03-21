@@ -3,12 +3,15 @@ import {
   Controller,
   Delete,
   Get,
+  HttpException,
+  HttpStatus,
   Param,
   Patch,
   Post,
 } from '@nestjs/common';
-import { CreateAddressDto } from 'src/dto/addresses/create-address.dto';
-import { EditAddressDto } from 'src/dto/addresses/edit-address.dto';
+import { ValidationResult } from 'joi';
+import { CreateAddressDto } from 'src/addresses/dto/create-address.dto';
+import { EditAddressDto } from 'src/addresses/dto/edit-address.dto';
 import {
   AddressCreationValidation,
   AddressEditionValidation,
@@ -36,11 +39,17 @@ export class AddressesController {
 
   @Post()
   addAddress(@Body() addressDto: CreateAddressDto) {
-    const address = AddressCreationValidation.validate(addressDto);
-    if (address.error) {
-      return address.error;
-    }
+    this.checkValidation(AddressCreationValidation.validate(addressDto));
     return this.addressesService.create(addressDto);
+  }
+
+  private checkValidation(address: ValidationResult) {
+    if (address.error) {
+      throw new HttpException(
+        `${address.error.details.map(({ message }) => message).join(' ')}`,
+        HttpStatus.BAD_REQUEST,
+      );
+    }
   }
 
   @Delete(':id')
@@ -50,10 +59,7 @@ export class AddressesController {
 
   @Patch(':id')
   editFields(@Param('id') id: string, @Body() addressDto: EditAddressDto) {
-    const address = AddressEditionValidation.validate(addressDto);
-    if (address.error) {
-      return address.error;
-    }
+    this.checkValidation(AddressEditionValidation.validate(addressDto));
     return this.addressesService.edit(id, addressDto);
   }
 }

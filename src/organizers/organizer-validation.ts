@@ -1,15 +1,30 @@
 import * as Joi from 'joi';
-import { CreateOrganizerDto } from 'src/dto/organizers/create-organizer.dto';
-import { EditOrganizerDto } from 'src/dto/organizers/edit-organizer.dto';
+import { CreateOrganizerDto } from 'src/organizers/dto/create-organizer.dto';
+import { EditOrganizerDto } from 'src/organizers/dto/edit-organizer.dto';
 
 export class OrganizerCreationValidation {
   private static schema = Joi.object({
-    title: Joi.string().trim().min(3).max(25).required(),
-    userId: Joi.string()
+    title: Joi.string()
       .trim()
-      // .uuid()
-      .required(),
-    addressId: Joi.string().trim().uuid().required(),
+      .min(3)
+      .max(25)
+      .pattern(/^[a-zA-Z\s\-ąćęłńóśźżĄĆĘŁŃÓŚŹŻ]*$/)
+      .required()
+      .messages({
+        'string.min': 'Title have to contain at least 3 characters.',
+        'string.max': "Title can't be longer than 25 characters.",
+        'string.pattern.base':
+          'Title can contain only letters, white spaces, numbers and dashes.',
+        'any.required': 'Title is required.',
+      }),
+    userId: Joi.string().trim().uuid().required().messages({
+      'string.guid': 'User id should be in UUID format.',
+      'any.required': 'User id is required.',
+    }),
+    addressId: Joi.string().trim().uuid().required().messages({
+      'string.guid': 'Address id should be in UUID format.',
+      'any.required': 'Address id is required.',
+    }),
   });
 
   static validate(organizerDto: CreateOrganizerDto) {
@@ -19,8 +34,20 @@ export class OrganizerCreationValidation {
 
 export class OrganizerEditionValidation {
   private static schema = Joi.object({
-    title: Joi.string().trim().alphanum().min(3).max(25),
-    addressId: Joi.string().trim().uuid(),
+    title: Joi.string()
+      .trim()
+      .min(3)
+      .max(25)
+      .pattern(/^[a-zA-Z\s\-ąćęłńóśźżĄĆĘŁŃÓŚŹŻ]*$/)
+      .messages({
+        'string.min': 'Title have to contain at least 3 characters.',
+        'string.max': "Title can't be longer than 25 characters.",
+        'string.pattern.base':
+          'Title can contain only letters, white spaces, numbers and dashes.',
+      }),
+    addressId: Joi.string().trim().uuid().messages({
+      'string.guid': 'Address id should be in UUID format.',
+    }),
   });
 
   static validate(organizerDto: EditOrganizerDto) {

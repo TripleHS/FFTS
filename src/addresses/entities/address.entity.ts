@@ -1,4 +1,4 @@
-import { User } from 'src/dto/users/user.entity';
+import { User } from 'src/users/entities/user.entity';
 import {
   Column,
   Entity,
@@ -6,7 +6,7 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Organizer } from '../organizers/organizer.entity';
+import { Organizer } from '../../organizers/entities/organizer.entity';
 
 @Entity()
 export class Address {

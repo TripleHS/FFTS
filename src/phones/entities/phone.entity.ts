@@ -1,7 +1,7 @@
 import { IsPhoneNumber } from 'class-validator';
 import { PhoneType } from 'src/enums';
 import { Column, Entity, ManyToOne, PrimaryColumn } from 'typeorm';
-import { User } from '../users/user.entity';
+import { User } from '../../users/entities/user.entity';
 
 @Entity()
 export class Phone {
