@@ -5,7 +5,7 @@ import { AddressesModule } from './addresses/addresses.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { User } from './users/entities/user.entity';
-import { WorkingHours } from './working-hours/entites/working-hours.entity';
+import { WorkingHours } from './working-hours/entities/working-hours.entity';
 import { UsersModule } from './users/users.module';
 import { PhonesModule } from './phones/phones.module';
 import { Phone } from './phones/entities/phone.entity';
