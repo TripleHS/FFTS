@@ -38,6 +38,22 @@ export class WorkingHoursController {
     return this.workingHoursService.getAllByDay(date);
   }
 
+  @Get('organizer/:id/:date')
+  getAllByDateAndOrganizerId(
+    @Param('id') organizerId: string,
+    @Param('date') date: Date,
+  ) {
+    return this.workingHoursService.getAllByDayAndOrganizerId(
+      date,
+      organizerId,
+    );
+  }
+
+  @Get('week/:id')
+  getDataForWeek(@Param('id') organizerId: string) {
+    return this.workingHoursService.getWorkingHoursForAWeek(organizerId);
+  }
+
   @Post()
   createWorkingHours(@Body() workingHoursDto: CreateWorkingHoursDto) {
     const workingHours = WorkingHoursCreationValidation.validate(

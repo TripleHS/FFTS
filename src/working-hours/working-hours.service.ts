@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { OrganizersService } from 'src/organizers/organizers.service';
-import { Repository } from 'typeorm';
+import { Between, Raw, Repository } from 'typeorm';
 import { CreateWorkingHoursDto } from './dto/create-working-hours.dto';
 import { EditWorkingHoursDto } from './dto/edit-working-hours.dto';
 import { WorkingHours } from './entities/working-hours.entity';
@@ -36,6 +36,29 @@ export class WorkingHoursService {
   getAllByDay(date: Date): Promise<WorkingHours[]> {
     return this.workingHoursRepository.find({
       where: [{ date: date }, { shiftEndDate: date }],
+    });
+  }
+
+  getAllByDayAndOrganizerId(
+    date: Date,
+    organizerId: string,
+  ): Promise<WorkingHours[]> {
+    return this.workingHoursRepository.find({
+      where: {
+        organizer: organizerId,
+        date: date,
+      },
+    });
+  }
+
+  getWorkingHoursForAWeek(organizerId: string): Promise<WorkingHours[]> {
+    return this.workingHoursRepository.find({
+      where: {
+        organizer: organizerId,
+        date: Raw(
+          (alias) => `${alias} >= date(now()) AND ${alias} < (date(now()) + 7)`,
+        ),
+      },
     });
   }
 
