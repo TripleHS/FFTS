@@ -16,6 +16,7 @@ import { VisitsModule } from './visits/visits.module';
 import { WorkingHoursModule } from './working-hours/working-hours.module';
 import { SpecializationsModule } from './specializations/specializations.module';
 import { Specialization } from './specializations/entities/specialization.entity';
+import { AuthModule } from './auth/auth.module';
 import * as dotenv from 'dotenv';
 
 dotenv.config();
@@ -48,6 +49,7 @@ dotenv.config();
     WorkingHoursModule,
     VisitsModule,
     SpecializationsModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

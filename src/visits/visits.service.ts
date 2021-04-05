@@ -47,7 +47,7 @@ export class VisitsService {
   }
 
   async create(visitDto: CreateVisitDto): Promise<Visit> {
-    const users = await this.usersService.findAllById(visitDto.userIds);
+    const users = await this.usersService.findAllByIds(visitDto.userIds);
     if (!users) {
       throw new HttpException(
         `Users ids missing or not existing.`,

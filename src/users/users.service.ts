@@ -17,7 +17,7 @@ export class UsersService {
     });
   }
 
-  findAllById(userIds: string[]): Promise<User[]> {
+  findAllByIds(userIds: string[]): Promise<User[]> {
     return this.usersRepository.find({
       where: {
         id: In(userIds),
@@ -36,6 +36,14 @@ export class UsersService {
       );
     }
     return user;
+  }
+
+  findByEmail(email: string): Promise<User> {
+    return this.usersRepository.findOne({
+      where: {
+        email: email,
+      },
+    });
   }
 
   create(createUserDto: CreateUserDto): Promise<User> {
